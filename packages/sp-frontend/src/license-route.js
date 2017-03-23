@@ -1,9 +1,10 @@
 
 import React, { Component } from "react";
 import SPChannel from "./sp-channel";
-import SPCamera from "./sp-camera";
+// import SPCamera from "./sp-camera";
 import styled from "styled-components";
 import {subscribe} from "./sp-binding";
+import CreateMyLicense from "./create-my-license";
 
 const FlexContainer = styled.div`
   width: 100%;
@@ -36,9 +37,9 @@ const ChannelName = styled.strong`
   top: -3px;
 `;
 
-export class ChannelRoute extends Component {
+export class LicenseRoute extends Component {
   static propTypes = {
-    channels: React.PropTypes.array,
+    licenses: React.PropTypes.array,
   };
 
   constructor() {
@@ -47,24 +48,17 @@ export class ChannelRoute extends Component {
   }
 
   render () {
-    const channel = this.props.channels[0] || {};
+    const license = this.props.licenses[0] || {};
     return (
       <FlexContainer>
-        <TitleBar>
-          📹 test <ChannelName>{channel.slug}</ChannelName>
-        </TitleBar>
-        <SPChannel width={1920} height={1080}>
-          <SPCamera x={0} y={0} width={960} height={270} userId="8145ebde-cf2d-44e9-8462-92aac7fe0074"></SPCamera>
-          <SPCamera x={960} y={0} width={960} height={1080} userId="8145ebde-cf2d-44e9-8462-92aac7fe0074"></SPCamera>
-          <SPCamera x={0} y={270} width={960} height={810} userId="8145ebde-cf2d-44e9-8462-92aac7fe0074"></SPCamera>
-        </SPChannel>
+        <CreateMyLicense />
       </FlexContainer>
     );
   }
 }
 
-export default subscribe(ChannelRoute, function(props, SP) {
+export default subscribe(LicenseRoute, function(props, SP) {
   return {
-    channels: SP.channels.watch({slug: props.match.params.slug}),
+    licenses: SP.licenses.watch({slug: props.match.params.slug}),
   };
 });

@@ -64,7 +64,8 @@ export class CreateMyChannel extends Component {
         <form onSubmit={this.handleSubmit}>
           <p>Create your channel:</p>
           <ServerEntry>
-            <Hostname>{hostname}/</Hostname><SlugInput innerRef={elem => this.slugInput = elem} placeholder="my-channel" value={this.state.slug} onChange={this.handleChange} />
+            <Hostname>{hostname}/</Hostname>
+            <SlugInput innerRef={elem => this.slugInput = elem} placeholder="my-channel" value={this.state.slug} onChange={this.handleChange} />
           </ServerEntry>
           <GoodButton disabled={this.state.creating} type="submit">{this.state.creating ? "Creating..." : "Create"}</GoodButton>
         </form>

@@ -10,7 +10,9 @@ import icon from "./icon.svg";
 import {subscribe} from "./sp-binding";
 import styled from "styled-components";
 import ChannelRoute from "./channel-route";
+import LicenseRoute from "./license-route";
 import TopBar from "./topbar.js";
+
 
 const AppContainer = styled.div`
   height: 100%;
@@ -102,6 +104,7 @@ export class SPRouter extends Component {
             <TopBar onLogout={this.props.onLogout} />
             <Route exact path="/" component={Home} />
             <Route path="/:slug" component={ChannelRoute} />
+            <Route path="/license" component={CreateMyLicense} />
           </PageContainer>
         </AppContainer>
       </Router>

@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {subscribe} from "./sp-binding";
 import CreateMyChannel from "./create-my-channel";
 
+
 const FlexContainer = styled.div`
   width: 100%;
   height: 100%;
@@ -34,7 +35,7 @@ export class Home extends Component {
   }
 
   text() {
-    if (!this.props.ready) {
+    if (!this.props.ready ) {
       return <p>Loading...</p>;
     }
     if (this.props.channels.length < 1) {
@@ -44,7 +45,8 @@ export class Home extends Component {
   }
 
   render () {
-    return (      <FlexContainer>
+    return (      
+      <FlexContainer>
         <ChannelSelect>
           {this.text()}
         </ChannelSelect>
@@ -56,5 +58,8 @@ export class Home extends Component {
 export default subscribe(Home, (props, SP) => {
   return {
     channels: SP.channels.watch({userId: SP.user.id}),
+
   };
 });
+//    licenses: SP.licenses.watch({userId: SP.user.id})
+//          {this.license()}
